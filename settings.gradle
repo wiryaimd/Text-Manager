@@ -1,0 +1,2 @@
+rootProject.name = "TextManager"
+include ':app'
