@@ -13,5 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
         int iyah = 12;
 
+        String iyahh = "hahay";
+
     }
 }
