@@ -7,6 +7,16 @@ import android.os.Bundle;
 
 import retrofit2.Retrofit;
 
+/**
+ * boilerplate = kode yang dapat digunakan berulang-ulang tanpa perubahan
+ *
+ * mirip template tapi
+ * boilerplate != template
+ *
+ * boilerplate untuk menghemat waktu early development
+ *
+ */
+
 public class MainActivity extends AppCompatActivity {
 
     /**
