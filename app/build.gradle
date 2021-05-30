@@ -30,10 +30,44 @@ android {
 
 dependencies {
 
+    // mvvm dependencies cizzzez
+
+    def retrofit_version = "2.6.0"
+    def viewmodel_version = "2.3.1"
+    def room_version = "2.3.0"
+
     implementation 'androidx.appcompat:appcompat:1.3.0'
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    // recyclerview & cardview
+    implementation 'androidx.recyclerview:recyclerview:1.2.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+
+    // (optional)
+    // if you using web services anjasss
+    // retrofit for api
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareuo.retrofit2:converter-gson:$retrofit_version"
+
+    // lifecycle
+    // ViewModel & LiveData
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$viewmodel_version"
+    implementation "androidx.lifecycle:lifecycle-livedata:$viewmodel_version"
+
+    // model
+    // room components
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+
+
+
+
+
+
+
+
 }
