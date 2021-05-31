@@ -5,9 +5,13 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.widget.Toast;
+
+import com.wiryaimd.textmanager.adapter.DocumentdataAdapter;
 
 import java.util.List;
 
@@ -42,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
     private DocumentdataViewModel documentdataViewModel;
 
+    private RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,12 +56,21 @@ public class MainActivity extends AppCompatActivity {
         // inisialisasi viewmodel agar singleton ... maybe
         documentdataViewModel = new ViewModelProvider(MainActivity.this).get(DocumentdataViewModel.class);
 
+        recyclerView = findViewById(R.id.main_recyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        recyclerView.setHasFixedSize(true);
+
+        DocumentdataAdapter adapter = new DocumentdataAdapter(MainActivity.this);
+        recyclerView.setAdapter(adapter);
+
         // untuk meng observe/memantau jika ada perubahan data
         // ini bisa menlindungi aplikasi dari memory leaks/bocor
         documentdataViewModel.getAllDocumentdata().observe(MainActivity.this, new Observer<List<Documentdata>>() {
             @Override
             public void onChanged(List<Documentdata> documentdata) {
-                // melakukan update
+                // update adapter
+                // documentdata diambil dari database yang berubah
+                adapter.setAllDocumentdata(documentdata);
 
                 Toast.makeText(MainActivity.this, "changed data boss", Toast.LENGTH_SHORT).show();
             }

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="6dp"
+    android:background="@color/teal_700"
+    android:layout_margin="6dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/documentdata_item_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ngontol abiez"
+            android:layout_margin="12dp"
+            android:textSize="22sp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/documentdata_item_text"
+            android:layout_below="@id/documentdata_item_title"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:text="hahay appale leap"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:textSize="14sp">
+
+        </TextView>
+
+
+
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
