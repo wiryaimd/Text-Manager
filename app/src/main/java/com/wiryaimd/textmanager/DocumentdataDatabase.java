@@ -10,12 +10,15 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
- * membuat database ... maybe
- * tag @Database berisikan entitty/model dari documentdata
+ * membuat room database
+ * tag @Database berisikan entitty/model/tabel dari documentdata
  *
  */
-@Database(entities = {Documentdata.class}, version = 1)
+@Database(entities = {Documentdata.class}, version = 1, exportSchema = false)
 public abstract class DocumentdataDatabase extends RoomDatabase {
 
     // instance boss
@@ -23,6 +26,9 @@ public abstract class DocumentdataDatabase extends RoomDatabase {
 
     // digunakan untuk merubah data atau insert, update, dll
     public abstract DocumentdataDao documentdataDao();
+
+    private static final int NUMBER_OF_THREADS = 5;
+    public static ExecutorService asyncEx = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     // biar singletod
     public static synchronized DocumentdataDatabase getInstance(Context context){
@@ -46,24 +52,32 @@ public abstract class DocumentdataDatabase extends RoomDatabase {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
-            new PrepareDataAsync(instance).execute();
+
+            // mengguankan ExecutorServices
+            asyncEx.execute(() -> {
+                instance.documentdataDao().insert(new Documentdata("ngewe hayuu", "anjas guranjas takanjas anjas", "2021, 5, 31"));
+                instance.documentdataDao().insert(new Documentdata("gile lu yak", "hahay papale", "2026, 4, 21"));
+            });
         }
     };
 
-    private static class PrepareDataAsync extends AsyncTask<Void, Void, Void>{
-
-        private DocumentdataDatabase db;
-
-        public PrepareDataAsync(DocumentdataDatabase db) {
-            this.db = db;
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            db.documentdataDao().insert(new Documentdata("ngewe hayuu", "anjas guranjas takanjas anjas", "2021, 5, 31"));
-            db.documentdataDao().insert(new Documentdata("gile lu yak", "hahay papale", "2026, 4, 21"));
-            return null;
-        }
-    }
+    /**
+     * menggunakan AsyncTask class
+     */
+//    private static class PrepareDataAsync extends AsyncTask<Void, Void, Void>{
+//
+//        private DocumentdataDatabase db;
+//
+//        public PrepareDataAsync(DocumentdataDatabase db) {
+//            this.db = db;
+//        }
+//
+//        @Override
+//        protected Void doInBackground(Void... voids) {
+//            db.documentdataDao().insert(new Documentdata("ngewe hayuu", "anjas guranjas takanjas anjas", "2021, 5, 31"));
+//            db.documentdataDao().insert(new Documentdata("gile lu yak", "hahay papale", "2026, 4, 21"));
+//            return null;
+//        }
+//    }
 
 }

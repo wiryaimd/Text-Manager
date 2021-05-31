@@ -8,7 +8,7 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 /**
- *  repository seperti / sebagai tempat manage data
+ * repository seperti / sebagai tempat manage data
  *
  */
 
@@ -23,26 +23,68 @@ public class DocumentdataRepository {
         allDocumentdata = documentdataDao.getDocumentdata();
     }
 
-    public void insert(Documentdata documentdata){
-        new InsertDoc(documentdataDao).execute(documentdata);
+    /**
+     * room tidak mengijinkan melakukan insert, update dll pada thread utama
+     * oleh karena itu kita melakukan nya di thread asinkron background
+     *
+     */
+
+    /**
+     * menggunakan ExecutorServices class sebagai threads asinkronus
+     */
+    void insert(Documentdata documentdata){
+        DocumentdataDatabase.asyncEx.execute(new Runnable() {
+            @Override
+            public void run() {
+                documentdataDao.insert(documentdata);
+            }
+        });
     }
 
-    public void update(Documentdata documentdata){
-        new UpdateDoc(documentdataDao).execute(documentdata);
+    void update(Documentdata documentdata){
+        DocumentdataDatabase.asyncEx.execute(new Runnable() {
+            @Override
+            public void run() {
+                documentdataDao.update(documentdata);
+            }
+        });
     }
 
-    public void delete(Documentdata documentdata){
-        new DeleteDoc(documentdataDao).execute(documentdata);
+    void delete(Documentdata documentdata){
+        DocumentdataDatabase.asyncEx.execute(() -> documentdataDao.delete(documentdata));
     }
 
-    public void deleteAll(){
-        new DeleteAllDoc(documentdataDao).execute();
+    void deleteAll(){
+        DocumentdataDatabase.asyncEx.execute(() -> documentdataDao.deleteAllDocuments());
     }
 
+    // getter nih
     public LiveData<List<Documentdata>> getAllDocumentdata() {
         return allDocumentdata;
     }
 
+    /**
+     * menggunakan AsyncTask class
+     */
+//    public void insert(Documentdata documentdata){
+//        new InsertDoc(documentdataDao).execute(documentdata);
+//    }
+//
+//    public void update(Documentdata documentdata){
+//        new UpdateDoc(documentdataDao).execute(documentdata);
+//    }
+//
+//    public void delete(Documentdata documentdata){
+//        new DeleteDoc(documentdataDao).execute(documentdata);
+//    }
+//
+//    public void deleteAll(){
+//        new DeleteAllDoc(documentdataDao).execute();
+//    }
+
+    /**
+     * nih bos
+     */
     private static class InsertDoc extends AsyncTask<Documentdata, Void, Void>{
 
         private DocumentdataDao dao;

@@ -51,7 +51,7 @@ dependencies {
     // if you using web services anjasss
     // retrofit for api
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareuo.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
     // lifecycle
     // ViewModel & LiveData

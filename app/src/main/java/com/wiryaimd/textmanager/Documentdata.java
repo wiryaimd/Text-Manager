@@ -10,6 +10,7 @@ import androidx.room.PrimaryKey;
  * tag @Entity menandakan class tersebut adalah room atau bagian dari room
  *
  * room = model = data = sqlite
+ * class ini termasuk membuat tabel
  *
  * hahay
  *
@@ -45,7 +46,11 @@ public class Documentdata {
         this.id = id;
     }
 
-    // getter yekan ykl, tanpa ada getter id
+    // getter yekan ykl
+
+    public int getId() {
+        return id;
+    }
 
     public String getTitle() {
         return title;
