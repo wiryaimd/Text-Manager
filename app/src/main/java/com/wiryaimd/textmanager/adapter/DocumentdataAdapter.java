@@ -25,6 +25,7 @@ public class DocumentdataAdapter extends RecyclerView.Adapter<DocumentdataAdapte
 
     public DocumentdataAdapter(Activity activity) {
         this.activity = activity;
+        // tidak menggunakan inisial di konstruktor yahh
 //        this.allDocumentdata = allDocumentdata;
     }
 
@@ -34,6 +35,11 @@ public class DocumentdataAdapter extends RecyclerView.Adapter<DocumentdataAdapte
     public void setAllDocumentdata(List<Documentdata> allDocumentdata){
         this.allDocumentdata = allDocumentdata;
         notifyDataSetChanged();
+    }
+
+
+    public Documentdata getDocumnetdataAt(int position){
+        return allDocumentdata.get(position);
     }
 
     @NonNull
