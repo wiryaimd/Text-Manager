@@ -62,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private FloatingActionButton fab;
 
+    /**
+     * membuat startActivityForResult versi baru bos
+     * tinggal launchResult.launch(intent_crot);
+     */
     private ActivityResultLauncher<Intent> launchResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
         public void onActivityResult(ActivityResult result) {
@@ -73,6 +77,28 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Anjas guranjas", Toast.LENGTH_SHORT).show();
             }else{
                 Toast.makeText(MainActivity.this, "Jiahh tahii", Toast.LENGTH_SHORT).show();
+            }
+        }
+    });
+
+    private ActivityResultLauncher<Intent> launchEdit = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+        @Override
+        public void onActivityResult(ActivityResult result) {
+            if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                String title = result.getData().getStringExtra(AdddocActivity.EXTRA_TITLE);
+                String text = result.getData().getStringExtra(AdddocActivity.EXTRA_TEXT);
+                int id = result.getData().getIntExtra(EditdocActivity.EXTRA_ID, -1);
+
+                if (id == -1){
+                    Toast.makeText(MainActivity.this, "Ngacengan asu", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                Documentdata documentdata = new Documentdata(title, text, "");
+                documentdata.setId(id);
+
+                documentdataViewModel.update(documentdata);
+                Toast.makeText(MainActivity.this, "edit cuyy ahhay", Toast.LENGTH_SHORT).show();
             }
         }
     });
@@ -130,6 +156,19 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Doc delete jrodd aowkaowk", Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(recyclerView);
+
+        adapter.setOnDocClick(new DocumentdataAdapter.onDocClick() {
+            @Override
+            public void itemClick(Documentdata documentdata) {
+                Intent intent = new Intent(MainActivity.this, EditdocActivity.class);
+                intent.putExtra(AdddocActivity.EXTRA_TITLE, documentdata.getTitle());
+                intent.putExtra(AdddocActivity.EXTRA_TEXT, documentdata.getText());
+                intent.putExtra(EditdocActivity.EXTRA_ID, documentdata.getId());
+
+                launchEdit.launch(intent);
+
+            }
+        });
 
     }
 

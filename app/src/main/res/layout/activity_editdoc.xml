@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/editdoc_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:hint="Title.."
+        android:textSize="20sp">
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/editdoc_text"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_below="@id/editdoc_title"
+        android:layout_margin="12dp"
+        android:gravity="top|start"
+        android:hint="Text..."
+        android:textSize="20sp">
+
+    </EditText>
+
+    <Button
+        android:id="@+id/editdoc_crotboss"
+        android:layout_width="90dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/editdoc_text"
+        android:layout_marginStart="12dp"
+        android:background="@color/teal_700"
+        android:text="ewewewew"
+        android:textColor="@android:color/holo_orange_dark">
+
+    </Button>
+
+</RelativeLayout>

@@ -20,8 +20,18 @@ import java.util.List;
  */
 public class DocumentdataAdapter extends RecyclerView.Adapter<DocumentdataAdapter.MyHolder> {
 
+    public interface onDocClick{
+        void itemClick(Documentdata documentdata);
+    }
+
     private Activity activity;
     private List<Documentdata> allDocumentdata = new ArrayList<>();
+    private onDocClick onDocClick;
+
+    public void setOnDocClick(onDocClick onDocClick){
+        this.onDocClick = onDocClick;
+    }
+
 
     public DocumentdataAdapter(Activity activity) {
         this.activity = activity;
@@ -70,6 +80,16 @@ public class DocumentdataAdapter extends RecyclerView.Adapter<DocumentdataAdapte
 
             title = itemView.findViewById(R.id.documentdata_item_title);
             text = itemView.findViewById(R.id.documentdata_item_text);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getBindingAdapterPosition();
+                    if (onDocClick != null && position != RecyclerView.NO_POSITION){
+                        onDocClick.itemClick(allDocumentdata.get(position));
+                    }
+                }
+            });
         }
     }
 }
