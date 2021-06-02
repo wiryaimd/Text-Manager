@@ -9,6 +9,10 @@ import dagger.Component;
 @Component
 public interface CarComponent {
 
-    Car getCar();
+    // tidak perlu dipakai lagi
+    // karena sudah ada inject method
+//    Car getCar();
+
+    void inject(MainActivity mainActivity);
 
 }

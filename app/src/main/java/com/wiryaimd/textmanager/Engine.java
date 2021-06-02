@@ -14,4 +14,8 @@ public class Engine {
 
     }
 
+    public void ngentod(){
+        System.out.println("hehe boi anjeng");
+    }
+
 }
