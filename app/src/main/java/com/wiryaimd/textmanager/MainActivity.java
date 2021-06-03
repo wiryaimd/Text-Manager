@@ -4,16 +4,23 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.wiryaimd.textmanager.car.Car;
+import com.wiryaimd.textmanager.car.Engine;
+import com.wiryaimd.textmanager.dagger.CarComponent;
+import com.wiryaimd.textmanager.dagger.DaggerCarComponent;
+
 import javax.inject.Inject;
 
 public class MainActivity extends AppCompatActivity {
 
     // anotasi inject agar tanpa menginisalisasi/tanpa menggunakan getCar()
-    @Inject Car car;
+    @Inject
+    Car car;
 
     // ex 2
-    @Inject
-    Engine engine;
+    // menginisialisasi kelas engine
+//    @Inject
+//    Engine engine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +37,9 @@ public class MainActivity extends AppCompatActivity {
         // ex jika tidak menggunakan inject ke kelas(MainActivity)
         // Car car = carComponent.getCar();
 
-        engine.ngentod();
+//        engine.ngentod();
         car.drive();
+
 
     }
 }
