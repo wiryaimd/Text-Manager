@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.wiryaimd.textmanager.component.DaggerWtfComponent;
 import com.wiryaimd.textmanager.component.WtfComponent;
+import com.wiryaimd.textmanager.component.module.ShieldModule_CombiningFactory;
 import com.wiryaimd.textmanager.model.Player;
 
 import javax.inject.Inject;
