@@ -8,6 +8,10 @@ import com.wiryaimd.textmanager.car.Car;
 import com.wiryaimd.textmanager.car.Engine;
 import com.wiryaimd.textmanager.dagger.CarComponent;
 import com.wiryaimd.textmanager.dagger.DaggerCarComponent;
+import com.wiryaimd.textmanager.dagger.EngineTodModule;
+import com.wiryaimd.textmanager.dagger.WheelsModule;
+
+import java.util.concurrent.Executors;
 
 import javax.inject.Inject;
 
@@ -29,7 +33,10 @@ public class MainActivity extends AppCompatActivity {
 
         // DaggerCarComponent merupakan generated class saat di compile
         // akan meng generate dagger class sesuai method yang ada di interface CarComponent
-        CarComponent carComponent = DaggerCarComponent.create();
+        CarComponent carComponent = DaggerCarComponent
+                .builder()
+                .h
+                .build();
 
         // meberitahu untuk meng inject/menginisialisasi field pada kelas main activity
         carComponent.inject(MainActivity.this);
@@ -39,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
 //        engine.ngentod();
         car.drive();
-
 
     }
 }

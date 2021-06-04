@@ -3,6 +3,7 @@ package com.wiryaimd.textmanager.dagger;
 import com.wiryaimd.textmanager.MainActivity;
 import com.wiryaimd.textmanager.car.Car;
 
+import dagger.BindsInstance;
 import dagger.Component;
 
 /**
@@ -10,7 +11,7 @@ import dagger.Component;
  * ini akan meng generate code sesuai method yg ada dalam interface
  */
 
-@Component(modules = {WheelsModule.class, EngineTodModule.class})
+@Component(modules = {EngineTodModule.class})
 public interface CarComponent {
 
     // tidak perlu dipakai lagi
@@ -19,6 +20,16 @@ public interface CarComponent {
 
     void inject(MainActivity mainActivity);
 
-    void crot(Car car);
+//    void crot(Car car);
+
+    @Component.Builder
+    interface Builder{
+
+        @BindsInstance
+        Builder value(int value);
+
+        CarComponent build();
+
+    }
 
 }

@@ -8,12 +8,14 @@ public class EngineTod implements Engine {
 
     private static final String TAG = "EngineTod";
 
+    private int value_bossku;
+
     /**
      * meng inject agar tau yekan
      */
     @Inject
-    public EngineTod(){
-
+    public EngineTod(int value_bossku) {
+        this.value_bossku = value_bossku;
     }
 
     /**
@@ -21,6 +23,6 @@ public class EngineTod implements Engine {
      */
     @Override
     public void aghhh() {
-        Log.d(TAG, "aghhh: anjaiiii");
+        Log.d(TAG, "aghhh: anjaiiii " + value_bossku);
     }
 }

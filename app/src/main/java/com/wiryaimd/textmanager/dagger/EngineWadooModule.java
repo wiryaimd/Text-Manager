@@ -13,10 +13,11 @@ public abstract class EngineWadooModule {
 
     /**
      * anotasi binds digunakan untuk interface
-     * interface engine akan mengambil data nya ke class EngineWadoo
+     * interface engine akan mengambil data nya ke class EngineWadoo (sesuai parameter)
      * kemudian me return nya menjadi engine
      */
     @Binds
     public abstract Engine engineWadoo(EngineWadoo engineWadoo);
+    // anotasi bind harus ber method abstract
 
 }
