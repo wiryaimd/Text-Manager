@@ -5,6 +5,7 @@ import android.util.Log;
 import com.wiryaimd.textmanager.model.playeritem.Shield;
 import com.wiryaimd.textmanager.model.playeritem.Sword;
 import com.wiryaimd.textmanager.model.playeritem.materials.Material;
+import com.wiryaimd.textmanager.model.playeritem.materials.Wood;
 
 import javax.inject.Inject;
 
@@ -35,7 +36,8 @@ public class Player {
 
     public void attack(){
         Log.d(TAG, "attack: Atacking.. boss");
-        sword.use();
+        Log.d(TAG, "attack: " + sword);
+//        sword.use();
     }
 
     public void defend(){
