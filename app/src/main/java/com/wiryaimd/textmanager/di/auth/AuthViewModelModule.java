@@ -3,6 +3,7 @@ package com.wiryaimd.textmanager.di.auth;
 import androidx.lifecycle.ViewModel;
 
 import com.wiryaimd.textmanager.di.ViewModelKey;
+import com.wiryaimd.textmanager.network.auth.AuthApi;
 import com.wiryaimd.textmanager.ui.auth.AuthViewModel;
 
 import dagger.Binds;
@@ -32,8 +33,8 @@ public abstract class AuthViewModelModule {
 //    @Provides
 //    @IntoMap
 //    @ViewModelKey(AuthViewModel.class)
-//    static ViewModel providesAuthViewModel(){
-//        return new AuthViewModel();
+//    static ViewModel providesAuthViewModel(AuthApi authApi){
+//        return new AuthViewModel(authApi);
 //    }
 
 

@@ -1,5 +1,6 @@
 package com.wiryaimd.textmanager.di;
 
+import com.wiryaimd.textmanager.di.auth.AuthModule;
 import com.wiryaimd.textmanager.di.auth.AuthViewModelModule;
 import com.wiryaimd.textmanager.ui.auth.AuthActivity;
 
@@ -16,7 +17,8 @@ public abstract class ActivityBuilderModule {
      */
     @ContributesAndroidInjector(
             modules = {
-                    AuthViewModelModule.class
+                    AuthViewModelModule.class,
+                    AuthModule.class
             }
     )
     abstract AuthActivity authActivity();
