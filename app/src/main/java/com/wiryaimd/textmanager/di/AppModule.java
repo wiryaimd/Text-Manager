@@ -11,6 +11,8 @@ import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
 import com.wiryaimd.textmanager.R;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -43,6 +45,14 @@ public class AppModule {
 //        return application == null;
 //    }
 
+    /**
+     * di method ini terdapat anotasi singleton
+     * yang berarti method ini ber scope antara/dengan appcomponent
+     *
+     * jika appcomponent mati maka modul juga ikut mati karena scope singletodnya
+     */
+
+    @Singleton
     @Provides
     static RequestOptions requestOptions(){
         return RequestOptions.placeholderOf(R.color.black).error(R.color.purple_200);
@@ -52,11 +62,13 @@ public class AppModule {
      * method requestOptions juga bisa dipanggil di dalam modul
      * karena sudah di deklarasikan lebih dulu
      */
+    @Singleton
     @Provides
     static RequestManager requestManager(Application application){
         return Glide.with(application).setDefaultRequestOptions(requestOptions());
     }
 
+    @Singleton
     @Provides
     static Drawable providesDrawables(Application application){
         return ContextCompat.getDrawable(application, R.drawable.heheboi);

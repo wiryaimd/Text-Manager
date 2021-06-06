@@ -1,15 +1,14 @@
 package com.wiryaimd.textmanager.di;
 
 import android.app.Application;
-import android.content.Context;
 
-import com.wiryaimd.textmanager.AuthActivity;
 import com.wiryaimd.textmanager.BaseApplication;
+
+import javax.inject.Singleton;
 
 import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.AndroidInjector;
-import dagger.android.ContributesAndroidInjector;
 import dagger.android.support.AndroidSupportInjectionModule;
 
 /**
@@ -23,11 +22,22 @@ import dagger.android.support.AndroidSupportInjectionModule;
  *  berbda dengan AuthComponent/MainComponent yang berjalan saat (auth saat login)
  *  AuthComponent, MainComponent sebagai child nya AppComponent
  */
+
+/**
+ * jadi singletod itu bisa dibilang juga dengan Scope
+ * tiap module yang memiliki scope yang sama dengan komponennya yaitu singleton
+ * maka dia akan termasuk ke skope nya
+ *
+ * kita juga bisa membuat custom scope untuk modul2 atau activity kita
+ */
+
+@Singleton
 @Component(
         modules = {
                 AndroidSupportInjectionModule.class,
                 ActivityBuilderModule.class,
-                AppModule.class
+                AppModule.class,
+                ViewModelFactoryModule.class
         }
 )
 
