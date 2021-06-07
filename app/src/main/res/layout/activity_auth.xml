@@ -15,6 +15,15 @@
 
     </ImageView>
 
+    <ProgressBar
+        android:id="@+id/main_loading"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:layout_width="60dp"
+        android:layout_height="60dp">
+
+    </ProgressBar>
+
     <TextView
         android:id="@+id/main_tvlogin"
         android:layout_width="match_parent"
