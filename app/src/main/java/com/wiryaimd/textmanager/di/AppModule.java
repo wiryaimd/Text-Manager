@@ -17,6 +17,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
@@ -77,7 +78,6 @@ public class AppModule {
         return ContextCompat.getDrawable(application, R.drawable.heheboi);
     }
 
-
     /**
      * Retrofit nih bosss
      * buat api apian tai kucing
@@ -87,6 +87,7 @@ public class AppModule {
     static Retrofit providesRetrofitInstance(){
         return new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL_BOSS)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }

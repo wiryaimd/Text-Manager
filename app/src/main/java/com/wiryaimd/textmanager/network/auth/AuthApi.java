@@ -1,5 +1,6 @@
 package com.wiryaimd.textmanager.network.auth;
 
+import io.reactivex.Flowable;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -14,7 +15,12 @@ import retrofit2.http.GET;
  */
 public interface AuthApi {
 
-    @GET
-    Call<ResponseBody> getResponseAnjaiii();
+//    @GET
+//    Call<ResponseBody> getResponseAnjaiii();
+
+//    @GET
+//    Flowable<ResponseBody> getResponseAnjaiii();
+
+    
 
 }

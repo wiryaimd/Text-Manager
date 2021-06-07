@@ -61,8 +61,15 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 
     // retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.6.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
+
+    // retrofit rxjava extension
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
+
+    // rxjava / room
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
+
 
 
 
