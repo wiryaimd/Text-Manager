@@ -80,23 +80,26 @@ public class AuthActivity extends DaggerAppCompatActivity {
             @Override
             public void onChanged(AuthResource<UserModel> userModelAuthResource) {
                 // cek melalui auth status
-                switch (userModelAuthResource.authStatus){
-                    case AUTHENTICATED:
-                        Log.d(TAG, "onChanged: LOGIN SUCCESS BOSS " + userModelAuthResource.data.getEmail() );
-                        loading.setVisibility(View.GONE);
-                        startActivity(new Intent(AuthActivity.this, MainActivity.class));
-                        break;
-                    case NOT_AUTHENTICATED:
-                        Log.d(TAG, "onChanged: NOT AUTH ");
-                        loading.setVisibility(View.GONE);
-                        break;
-                    case ERROR:
-                        Log.d(TAG, "onChanged: GAGAL ANJAE");
-                        loading.setVisibility(View.GONE);
-                        break;
-                    case LOADING:
-                        loading.setVisibility(View.VISIBLE);
-                        break;
+                if(userModelAuthResource != null) {
+                    switch (userModelAuthResource.authStatus) {
+                        case AUTHENTICATED:
+                            Log.d(TAG, "onChanged: LOGIN SUCCESS BOSS " + userModelAuthResource.data.getEmail());
+                            loading.setVisibility(View.GONE);
+                            startActivity(new Intent(AuthActivity.this, MainActivity.class));
+                            finish();
+                            break;
+                        case NOT_AUTHENTICATED:
+                            Log.d(TAG, "onChanged: NOT AUTH");
+                            loading.setVisibility(View.GONE);
+                            break;
+                        case ERROR:
+                            Log.d(TAG, "onChanged: GAGAL ANJAE");
+                            loading.setVisibility(View.GONE);
+                            break;
+                        case LOADING:
+                            loading.setVisibility(View.VISIBLE);
+                            break;
+                    }
                 }
             }
         });
