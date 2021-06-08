@@ -38,8 +38,9 @@ public abstract class BaseActivity extends DaggerAppCompatActivity {
                 switch (userModelAuthResource.authStatus){
                     case AUTHENTICATED:
                         Log.d(TAG, "onChanged: LOGIN SUCCESS BOSS " + userModelAuthResource.data.getEmail() );
+                        break;
                     case NOT_AUTHENTICATED:
-                        Log.d(TAG, "onChanged: NOT AUTH ");
+                        Log.d(TAG, "onChanged: NOT AUTH asdsad");
                         Intent auth = new Intent(BaseActivity.this, AuthActivity.class);
                         startActivity(auth);
                         break;
