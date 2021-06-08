@@ -37,8 +37,9 @@ public class MainActivity extends BaseActivity {
         switch (item.getItemId()){
             case R.id.mainmenu_menu:
                 sessionManager.logout();
-                break;
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 }

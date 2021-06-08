@@ -30,8 +30,8 @@ public class AuthResource<T> {
         return new AuthResource<>(AuthStatus.ERROR, data, msg);
     }
 
-    public static <T> AuthResource<T> logout(T data){
-        return new AuthResource<>(AuthStatus.NOT_AUTHENTICATED, data, null);
+    public static <T> AuthResource<T> logout(){
+        return new AuthResource<>(AuthStatus.NOT_AUTHENTICATED, null, null);
     }
 
     public enum AuthStatus{

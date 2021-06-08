@@ -55,15 +55,17 @@ public class ProfileFragment extends DaggerFragment {
             @Override
             public void onChanged(AuthResource<UserModel> userModelAuthResource) {
                 Log.d(TAG, "onChanged: ini knp ya???");
-                switch (userModelAuthResource.authStatus){
-                    case AUTHENTICATED:
-                        tvusername.setText(userModelAuthResource.data.getUsername());
-                        tvemail.setText(userModelAuthResource.data.getEmail());
-                        tvwebsite.setText(userModelAuthResource.data.getWebsite());
-                        break;
-                    case ERROR:
-                        Toast.makeText(getActivity(), "Error brohh", Toast.LENGTH_SHORT).show();
-                        break;
+                if(userModelAuthResource != null) {
+                    switch (userModelAuthResource.authStatus) {
+                        case AUTHENTICATED:
+                            tvusername.setText(userModelAuthResource.data.getUsername());
+                            tvemail.setText(userModelAuthResource.data.getEmail());
+                            tvwebsite.setText(userModelAuthResource.data.getWebsite());
+                            break;
+                        case ERROR:
+                            Toast.makeText(getActivity(), "Error brohh", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
                 }
             }
         });

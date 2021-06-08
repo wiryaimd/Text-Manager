@@ -35,20 +35,24 @@ public abstract class BaseActivity extends DaggerAppCompatActivity {
         sessionManager.getLiveData().observe(BaseActivity.this, new Observer<AuthResource<UserModel>>() {
             @Override
             public void onChanged(AuthResource<UserModel> userModelAuthResource) {
-                switch (userModelAuthResource.authStatus){
-                    case AUTHENTICATED:
-                        Log.d(TAG, "onChanged: LOGIN SUCCESS BOSS " + userModelAuthResource.data.getEmail() );
-                    case NOT_AUTHENTICATED:
-                        Log.d(TAG, "onChanged: NOT AUTH ");
-                        Intent auth = new Intent(BaseActivity.this, AuthActivity.class);
-                        startActivity(auth);
-                        break;
-                    case ERROR:
-                        Log.d(TAG, "onChanged: GAGAL ANJAE");
-                        break;
-                    case LOADING:
+                if(userModelAuthResource != null) {
+                    switch (userModelAuthResource.authStatus) {
+                        case AUTHENTICATED:
+                            Log.d(TAG, "onChanged: LOGIN SUCCESS BOSS " + userModelAuthResource.data.getEmail());
+                            break;
+                        case NOT_AUTHENTICATED:
+                            Log.d(TAG, "onChanged: NOT AUTH SDSDSDSD ");
+                            Intent auth = new Intent(BaseActivity.this, AuthActivity.class);
+                            startActivity(auth);
+                            finish();
+                            break;
+                        case ERROR:
+                            Log.d(TAG, "onChanged: GAGAL ANJAE");
+                            break;
+                        case LOADING:
 
-                        break;
+                            break;
+                    }
                 }
             }
         });

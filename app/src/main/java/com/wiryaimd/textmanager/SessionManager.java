@@ -44,7 +44,7 @@ public class SessionManager {
     }
 
     public void logout(){
-        mediatorLiveData.setValue(AuthResource.logout(null));
+        mediatorLiveData.setValue(AuthResource.logout());
     }
 
     public LiveData<AuthResource<UserModel>> getLiveData(){
