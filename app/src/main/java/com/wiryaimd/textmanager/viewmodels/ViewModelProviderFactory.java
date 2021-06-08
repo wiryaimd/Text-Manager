@@ -1,5 +1,7 @@
 package com.wiryaimd.textmanager.viewmodels;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
@@ -25,6 +27,7 @@ public class ViewModelProviderFactory implements ViewModelProvider.Factory {
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         // check provider null
         Provider<? extends ViewModel> provider = providerMap.get(modelClass);
+        Log.d(TAG, "create: size map: " + providerMap.size());
         if (provider == null){
             // kalo null ya cek isi dari map nya ada yang sama ga ama key nya
             for(Map.Entry<Class<? extends ViewModel>, Provider<ViewModel>> entry : providerMap.entrySet()){

@@ -8,6 +8,7 @@ import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
+import com.wiryaimd.textmanager.SessionManager;
 import com.wiryaimd.textmanager.models.UserModel;
 import com.wiryaimd.textmanager.network.auth.AuthApi;
 
@@ -26,15 +27,17 @@ public class AuthViewModel extends ViewModel {
     private static final String TAG = "AuthViewModel";
 
     private AuthApi authApi;
+    private SessionManager sessionManager;
 
     // mediatod dengan authresource
-    private MediatorLiveData<AuthResource<UserModel>> mediatorLiveData = new MediatorLiveData<>();
+//    private MediatorLiveData<AuthResource<UserModel>> mediatorLiveData = new MediatorLiveData<>();
 
     @Inject
-    public AuthViewModel(AuthApi authApi){
+    public AuthViewModel(AuthApi authApi, SessionManager sessionManager){
         Log.d(TAG, "AuthViewModel: Anjai ");
 
         this.authApi = authApi;
+        this.sessionManager = sessionManager;
 
         // observe menggunakan rxjava
 //        authApi.getUser(1)
@@ -65,9 +68,10 @@ public class AuthViewModel extends ViewModel {
     }
 
     public void initData(int id) {
+        sessionManager.initAuth(getDataFromApi(id));
+    }
 
-        mediatorLiveData.setValue(AuthResource.loading(null));
-
+    public LiveData<AuthResource<UserModel>> getDataFromApi(int id){
         // get data dari api
         // langsung dengan meng konversi nya ke live data
         LiveData<AuthResource<UserModel>> liveData = LiveDataReactiveStreams.fromPublisher(
@@ -93,22 +97,11 @@ public class AuthViewModel extends ViewModel {
                     }
                 })
         );
-
-        mediatorLiveData.addSource(liveData, new Observer<AuthResource<UserModel>>() {
-            @Override
-            public void onChanged(AuthResource<UserModel> userModelAuthResource) {
-                // setelah itu add resource dengan livedata yang didapat dari fetch api tadi
-                // kemudian set value authresourcenya
-                mediatorLiveData.setValue(userModelAuthResource);
-                mediatorLiveData.removeSource(liveData);
-
-                // nanti setelah setvalue, observer akan mendeteksi perubahan data, kemudian meng updatenya
-            }
-        });
+        return liveData;
     }
 
     public LiveData<AuthResource<UserModel>> observerLiveData(){
-        return mediatorLiveData;
+        return sessionManager.getLiveData();
     }
 
 }

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.wiryaimd.textmanager.R;
 import com.wiryaimd.textmanager.models.UserModel;
+import com.wiryaimd.textmanager.ui.main.MainActivity;
 import com.wiryaimd.textmanager.viewmodels.ViewModelProviderFactory;
 
 import java.util.HashMap;
@@ -82,6 +84,7 @@ public class AuthActivity extends DaggerAppCompatActivity {
                     case AUTHENTICATED:
                         Log.d(TAG, "onChanged: LOGIN SUCCESS BOSS " + userModelAuthResource.data.getEmail() );
                         loading.setVisibility(View.GONE);
+                        startActivity(new Intent(AuthActivity.this, MainActivity.class));
                         break;
                     case NOT_AUTHENTICATED:
                         Log.d(TAG, "onChanged: NOT AUTH ");
