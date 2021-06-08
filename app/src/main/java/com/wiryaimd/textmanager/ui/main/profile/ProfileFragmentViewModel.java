@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.wiryaimd.textmanager.SessionManager;
 import com.wiryaimd.textmanager.models.UserModel;
+import com.wiryaimd.textmanager.network.main.MainApi;
 import com.wiryaimd.textmanager.ui.auth.AuthResource;
 
 import javax.inject.Inject;
@@ -15,7 +16,7 @@ public class ProfileFragmentViewModel extends ViewModel {
 
     private static final String TAG = "ProfileFragmentViewMode";
 
-    public SessionManager sessionManager;
+    private SessionManager sessionManager;
 
     @Inject
     public ProfileFragmentViewModel(SessionManager sessionManager){

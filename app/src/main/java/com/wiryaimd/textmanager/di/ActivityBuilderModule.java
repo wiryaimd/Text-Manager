@@ -3,6 +3,7 @@ package com.wiryaimd.textmanager.di;
 import com.wiryaimd.textmanager.di.auth.AuthModule;
 import com.wiryaimd.textmanager.di.auth.AuthViewModelModule;
 import com.wiryaimd.textmanager.di.main.FragmentBuilderModule;
+import com.wiryaimd.textmanager.di.main.MainModule;
 import com.wiryaimd.textmanager.ui.auth.AuthActivity;
 import com.wiryaimd.textmanager.ui.main.MainActivity;
 
@@ -26,7 +27,10 @@ public abstract class ActivityBuilderModule {
     abstract AuthActivity authActivity();
 
     @ContributesAndroidInjector(
-            modules = FragmentBuilderModule.class
+            modules = {
+                    FragmentBuilderModule.class,
+                    MainModule.class
+            }
     )
     abstract MainActivity mainActivity();
 

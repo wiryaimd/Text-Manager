@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.wiryaimd.textmanager.BaseActivity;
 import com.wiryaimd.textmanager.R;
+import com.wiryaimd.textmanager.ui.main.posts.PostsFragment;
 import com.wiryaimd.textmanager.ui.main.profile.ProfileFragment;
 
 public class MainActivity extends BaseActivity {
@@ -22,7 +23,7 @@ public class MainActivity extends BaseActivity {
 
         Toast.makeText(this, "anjai guranjai", Toast.LENGTH_SHORT).show();
 
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new ProfileFragment());
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new PostsFragment());
         ft.commit();
     }
 
