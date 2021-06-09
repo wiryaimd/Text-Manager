@@ -10,8 +10,10 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
 import com.wiryaimd.textmanager.R;
+import com.wiryaimd.textmanager.models.UserModel;
 import com.wiryaimd.textmanager.util.Constants;
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -90,6 +92,13 @@ public class AppModule {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+    }
+
+    @Singleton
+    @Provides
+    @Named("ngontol")
+    static UserModel userModel(){
+        return new UserModel();
     }
 
 }

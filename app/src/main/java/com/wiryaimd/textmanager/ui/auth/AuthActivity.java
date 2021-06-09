@@ -26,6 +26,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import dagger.android.support.DaggerAppCompatActivity;
 
@@ -53,6 +54,15 @@ public class AuthActivity extends DaggerAppCompatActivity {
     @Inject
     ViewModelProviderFactory providerFactory;
 
+    // contoh perbedaan pada scope Singleton
+    @Inject @Named("ngontol")
+    UserModel userModel1;
+
+    // dengan scope AuthScope
+    // dan penggunaan anotasi Named
+    @Inject @Named("gileee")
+    UserModel userModel2;
+
     private AuthViewModel authViewModel;
 
     private ImageView imgbg;
@@ -64,6 +74,10 @@ public class AuthActivity extends DaggerAppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
+
+        // ex alamat nya hanya scope singleton yang tidak berubah
+        Log.d(TAG, "onCreate: usermodel1 " + userModel1);
+        Log.d(TAG, "onCreate: usermodel2 " + userModel2);
 
         // deklarasi viewmodel broo, ykl
         authViewModel = new ViewModelProvider(AuthActivity.this, providerFactory).get(AuthViewModel.class);
