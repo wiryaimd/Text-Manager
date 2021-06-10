@@ -6,22 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
 
-    </androidx.recyclerview.widget.RecyclerView>
+<!--    </androidx.recyclerview.widget.RecyclerView>-->
 
     <Button
-        android:textSize="18sp"
-        android:text="Create New Editor"
-        android:backgroundTint="@color/primary2"
-        android:layout_marginBottom="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginStart="12dp"
-        android:layout_alignParentBottom="true"
+        android:id="@+id/main_btncreate"
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="80dp"
+        android:textColor="@color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="@color/primary2"
+        android:text="Create New Editor"
+        android:textSize="18sp">
 
     </Button>
 
