@@ -1,6 +1,8 @@
 package com.wiryaimd.textmanager.di;
 
 import android.app.Application;
+import android.graphics.Paint;
+import android.graphics.Rect;
 
 import com.wiryaimd.textmanager.BaseApplication;
 

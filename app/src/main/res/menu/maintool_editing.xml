@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/editingmenu_undo"
+        android:title="Undo"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_undo"/>
+
+    <item android:id="@+id/editingmenu_redo"
+        android:title="Redo"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_redo"/>
+
+    <item android:id="@+id/editingmenu_save"
+        android:title="Save"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_save"/>
+</menu>

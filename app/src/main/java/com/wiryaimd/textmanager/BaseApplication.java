@@ -1,5 +1,8 @@
 package com.wiryaimd.textmanager;
 
+import android.graphics.Paint;
+import android.graphics.Rect;
+
 import com.wiryaimd.textmanager.di.AppComponent;
 import com.wiryaimd.textmanager.di.DaggerAppComponent;
 
