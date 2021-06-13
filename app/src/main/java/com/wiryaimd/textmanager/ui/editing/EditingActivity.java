@@ -56,7 +56,7 @@ public class EditingActivity extends DaggerAppCompatActivity {
             @Override
             public void onClick(View v) {
                 DisplayMetrics metrics = getResources().getDisplayMetrics();
-                new FindDialog(Measure.dpToPx(Measure.getPositionView(lmain).x, metrics), Measure.dpToPx(Measure.getPositionView(lmain).y, metrics))
+                new FindDialog(EditingActivity.this, edtmain, Measure.dpToPx(Measure.getPositionView(lmain).x, metrics), Measure.dpToPx(Measure.getPositionView(lmain).y, metrics))
                         .show(getSupportFragmentManager(), Constants.DIALOG_TAG_FIND);
             }
         });
