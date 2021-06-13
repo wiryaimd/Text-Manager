@@ -20,8 +20,9 @@ import com.wiryaimd.textmanager.ui.editing.EditingActivity;
 import javax.inject.Inject;
 
 import dagger.android.DaggerActivity;
+import dagger.android.support.DaggerAppCompatActivity;
 
-public class MainActivity extends DaggerActivity {
+public class MainActivity extends DaggerAppCompatActivity {
 
     @Inject
     DataAdapter adapter;

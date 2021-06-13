@@ -1,6 +1,7 @@
 package com.wiryaimd.textmanager.di;
 
 import com.wiryaimd.textmanager.di.editing.EditingModule;
+import com.wiryaimd.textmanager.di.editing.dialog.DialogBuilderModule;
 import com.wiryaimd.textmanager.ui.editing.EditingActivity;
 import com.wiryaimd.textmanager.ui.main.MainActivity;
 import com.wiryaimd.textmanager.di.main.MainModule;
@@ -14,7 +15,12 @@ public abstract class ActivityBuilderModule {
     @ContributesAndroidInjector(modules = {MainModule.class})
     abstract MainActivity mainActivity();
 
-    @ContributesAndroidInjector(modules = {EditingModule.class})
+    @ContributesAndroidInjector(
+            modules = {
+                    EditingModule.class,
+                    DialogBuilderModule.class
+            }
+    )
     abstract EditingActivity editingActivityd();
 
 }
