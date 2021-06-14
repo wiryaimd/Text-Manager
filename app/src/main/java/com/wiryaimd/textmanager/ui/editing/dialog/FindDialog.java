@@ -32,6 +32,7 @@ import com.wiryaimd.textmanager.R;
 import com.wiryaimd.textmanager.SessionManager;
 import com.wiryaimd.textmanager.customwidget.TmEditor;
 import com.wiryaimd.textmanager.models.DataModel;
+import com.wiryaimd.textmanager.util.DialogPosition;
 import com.wiryaimd.textmanager.util.Measure;
 
 import java.util.ArrayList;
@@ -46,22 +47,14 @@ public class FindDialog extends DaggerDialogFragment {
 
     private static final String TAG = "FindDialog";
 
+    @Inject @Named("editingdata") DataModel dataModel;
+    @Inject Application application;
+    @Inject SessionManager sessionManager;
+
     private EditText edtFind;
     private Button btnNext;
 
-    private View snackbar;
-    
     private int posCursor = 0;
-
-    @Inject
-    @Named("editingdata")
-    DataModel dataModel;
-
-    @Inject
-    Application application;
-
-    @Inject
-    SessionManager sessionManager;
 
     private SpannableStringBuilder ssb;
     private BackgroundColorSpan bcs;
@@ -69,20 +62,8 @@ public class FindDialog extends DaggerDialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if (getDialog() != null && getActivity() != null) {
-            getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-            getDialog().getWindow().setGravity(Gravity.END);
-            // menghilangkan dim (background nya dialog)
-            getDialog().getWindow().setDimAmount(0);
-
-            WindowManager.LayoutParams layoutParams = getDialog().getWindow().getAttributes();
-            // layoutparam.y = 0
-            // posisi 0 ada di start nya di tengah
-            layoutParams.y = layoutParams.y - sessionManager.getLinearMainY();
-            Log.d(TAG, "onCreateView: linearY: " + layoutParams.y + "   " + sessionManager.getLinearMainY());
-
-            getDialog().getWindow().setAttributes(layoutParams);
-
+        if (getDialog() != null) {
+            DialogPosition.setupPosition(getDialog(), sessionManager);
         }
         return inflater.inflate(R.layout.dialog_findtext, container, false);
     }
@@ -92,7 +73,6 @@ public class FindDialog extends DaggerDialogFragment {
 
         edtFind = view.findViewById(R.id.findtext_edtmain);
         btnNext = view.findViewById(R.id.findtext_btnnext);
-        snackbar = view.findViewById(android.R.id.content);
 
         ssb = new SpannableStringBuilder(sessionManager.getTmEditor().getText());
         bcs = new BackgroundColorSpan(Color.parseColor("#ffc107"));
@@ -165,11 +145,11 @@ public class FindDialog extends DaggerDialogFragment {
         ssb.removeSpan(bcs);
         sessionManager.getTmEditor().setText(ssb);
     }
-    
+
     public boolean isContainsEdt(){
         return sessionManager.getTmEditor().getText().toString().toLowerCase().contains(edtFind.getText().toString().toLowerCase());
     }
-    
+
     public int getWordPos(int from){
         return sessionManager.getTmEditor().getText().toString().toLowerCase().indexOf(edtFind.getText().toString().toLowerCase(), from);
     }

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/replacetext_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="12dp"
+        android:fontFamily="@font/leaguebold"
+        android:text="Replace Text"
+        android:textSize="16sp">
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/replacetext_edtfrom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/replacetext_title"
+        android:layout_marginStart="12dp"
+        android:layout_toStartOf="@id/replacetext_btnnext"
+        android:layout_marginEnd="12dp"
+        android:hint="From text..."
+        android:textSize="16sp">
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/replacetext_edtto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/replacetext_edtfrom"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
+        android:layout_toStartOf="@id/replacetext_btnnext"
+        android:hint="To text..."
+        android:textSize="16sp">
+
+    </EditText>
+
+    <Button
+        android:id="@+id/replacetext_btnnext"
+        android:layout_width="90dp"
+        android:textSize="14sp"
+        android:layout_height="40dp"
+        android:layout_below="@id/replacetext_title"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="12dp"
+        android:text="Next"
+        android:textAllCaps="false">
+
+    </Button>
+
+    <Button
+        android:id="@+id/replacetext_btnreplace"
+        android:layout_width="90dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/replacetext_edtfrom"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="12dp"
+        android:textSize="12sp"
+        android:backgroundTint="@color/color2"
+        android:text="Replace"
+        android:textAllCaps="false">
+
+    </Button>
+
+</RelativeLayout>
