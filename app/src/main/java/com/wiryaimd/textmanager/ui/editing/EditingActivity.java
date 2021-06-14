@@ -1,5 +1,6 @@
 package com.wiryaimd.textmanager.ui.editing;
 
+import android.app.Application;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -8,11 +9,14 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.wiryaimd.textmanager.R;
+import com.wiryaimd.textmanager.SessionManager;
 import com.wiryaimd.textmanager.customwidget.TmEditor;
 import com.wiryaimd.textmanager.models.DataModel;
 import com.wiryaimd.textmanager.ui.editing.dialog.FindDialog;
@@ -32,8 +36,13 @@ public class EditingActivity extends DaggerAppCompatActivity {
     @Inject @Named("editingdata")
     DataModel dataModel;
 
+    @Inject
+    SessionManager sessionManager;
+
     private TmEditor edtmain;
     private LinearLayout lmain, lcopy, lfind;
+
+    private RelativeLayout rlmain;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,20 +53,25 @@ public class EditingActivity extends DaggerAppCompatActivity {
         lmain = findViewById(R.id.editing_hlinearmain);
         lcopy = findViewById(R.id.editing_lcopy);
         lfind = findViewById(R.id.editing_lfind);
+        rlmain = findViewById(R.id.editing_rlmain);
 
         lcopy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: click copy " + dataModel.test());
+                Snackbar.make(rlmain, "Anjeng guranjeng", Snackbar.LENGTH_LONG).setAction("CROT", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                }).show();
             }
         });
 
         lfind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DisplayMetrics metrics = getResources().getDisplayMetrics();
-                new FindDialog(EditingActivity.this, edtmain, Measure.dpToPx(Measure.getPositionView(lmain).x, metrics), Measure.dpToPx(Measure.getPositionView(lmain).y, metrics))
-                        .show(getSupportFragmentManager(), Constants.DIALOG_TAG_FIND);
+                sessionManager.initEditingActivity(edtmain, lmain, getResources().getDisplayMetrics());
+                new FindDialog().show(getSupportFragmentManager(), Constants.DIALOG_TAG_FIND);
             }
         });
 

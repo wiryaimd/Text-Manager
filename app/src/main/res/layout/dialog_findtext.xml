@@ -24,10 +24,23 @@
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="12dp"
+        android:layout_toStartOf="@id/findtext_btnnext"
         android:hint="Input text here..."
         android:textSize="16sp">
 
     </EditText>
+
+    <Button
+        android:layout_marginEnd="12dp"
+        android:layout_below="@id/findtext_title"
+        android:id="@+id/findtext_btnnext"
+        android:layout_alignParentEnd="true"
+        android:textAllCaps="false"
+        android:text="Next"
+        android:layout_width="70dp"
+        android:layout_height="40dp">
+
+    </Button>
 
 
 </RelativeLayout>
