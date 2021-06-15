@@ -15,11 +15,4 @@ public class MainModule {
     static DataAdapter dataAdapter(){
         return new DataAdapter();
     }
-
-    @Provides
-    static DataModel dataModel(@Named("ngews") String ngews){
-        return new DataModel(ngews);
-    }
-
-
 }

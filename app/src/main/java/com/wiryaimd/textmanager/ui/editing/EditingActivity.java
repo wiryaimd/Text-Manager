@@ -37,7 +37,6 @@ public class EditingActivity extends DaggerAppCompatActivity {
 
     private static final String TAG = "EditingActivity";
 
-    @Inject @Named("editingdata") DataModel dataModel;
     @Inject SessionManager sessionManager;
     @Inject ClipboardManager clipboardManager;
 
@@ -121,15 +120,29 @@ public class EditingActivity extends DaggerAppCompatActivity {
         ltab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if (edtmain.getText() != null) {
-//                    StringBuilder sb = new StringBuilder(edtmain.getText().toString());
-//                    sb.insert(edtmain.getSelectionStart(), "\t");
-//                    edtmain.setText(sb.toString());
-//                }
+                if (edtmain.getText() != null) {
+                    int selectionCursor = edtmain.getSelectionStart();
+                    StringBuilder sb = new StringBuilder(edtmain.getText().toString());
+                    sb.insert(selectionCursor, "    ");
+                    edtmain.setText(sb.toString());
+                    edtmain.setSelection(selectionCursor + 4);
+                }
             }
         });
 
-        System.out.println(dataModel.test());
+        // TODO duplicate text
+        lduplicate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (edtmain.hasSelection() && edtmain.getText() != null) {
+                    StringBuilder sb = new StringBuilder(edtmain.getText().toString());
+                    sb.insert(edtmain.getSelectionEnd(), sb.substring(edtmain.getSelectionStart(), edtmain.getSelectionEnd()));
+                    edtmain.setText(sb.toString());
+                }else{
+                    Toast.makeText(EditingActivity.this, "Please select text to duplicate", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
     }
 

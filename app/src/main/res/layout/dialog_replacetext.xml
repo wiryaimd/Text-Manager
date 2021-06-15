@@ -70,4 +70,18 @@
 
     </Button>
 
+    <Button
+        android:id="@+id/replacetext_btnreplaceall"
+        android:layout_width="90dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/replacetext_btnreplace"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="12dp"
+        android:textSize="12sp"
+        android:backgroundTint="@color/color3"
+        android:text="Replace All"
+        android:textAllCaps="false">
+
+    </Button>
+
 </RelativeLayout>

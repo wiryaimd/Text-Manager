@@ -26,9 +26,6 @@ public interface AppComponent extends AndroidInjector<BaseApplication> {
     interface Builder{
 
         @BindsInstance
-        Builder ngews(@Named("ngews") String ngews);
-
-        @BindsInstance
         Builder application(Application application);
 
         AppComponent build();

@@ -3,6 +3,7 @@ package com.wiryaimd.textmanager.di.editing;
 import android.app.Application;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.text.SpannableStringBuilder;
 
 import com.wiryaimd.textmanager.models.DataModel;
 
@@ -13,12 +14,6 @@ import dagger.Provides;
 
 @Module
 public class EditingModule {
-
-    @Provides
-    @Named("editingdata")
-    DataModel dataModel(@Named("ngews") String nge){
-        return new DataModel(nge);
-    }
 
     @Provides
     ClipboardManager clipboardManager(Application application){

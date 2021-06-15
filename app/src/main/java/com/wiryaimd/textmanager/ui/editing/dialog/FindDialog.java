@@ -47,7 +47,6 @@ public class FindDialog extends DaggerDialogFragment {
 
     private static final String TAG = "FindDialog";
 
-    @Inject @Named("editingdata") DataModel dataModel;
     @Inject Application application;
     @Inject SessionManager sessionManager;
 
@@ -124,11 +123,7 @@ public class FindDialog extends DaggerDialogFragment {
                         sessionManager.getTmEditor().setText(ssb);
                         sessionManager.getTmEditor().setSelection(posCursor);
                     }
-
-                    Log.d(TAG, "onTextChanged: tmEditor: " + sessionManager.getTmEditor().getText().toString());
-                    Log.d(TAG, "onTextChanged: cs: " + s.toString());
                 }
-                Log.d(TAG, "onTextChanged: change");
             }
 
             @Override
