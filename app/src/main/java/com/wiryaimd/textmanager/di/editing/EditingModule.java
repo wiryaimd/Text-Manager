@@ -5,7 +5,9 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.text.SpannableStringBuilder;
 
+import com.wiryaimd.textmanager.SessionManager;
 import com.wiryaimd.textmanager.models.DataModel;
+import com.wiryaimd.textmanager.util.EdtHistory;
 
 import javax.inject.Named;
 
@@ -14,6 +16,11 @@ import dagger.Provides;
 
 @Module
 public class EditingModule {
+
+    @Provides
+    EdtHistory edtHistory(SessionManager sessionManager){
+        return new EdtHistory(sessionManager);
+    }
 
     @Provides
     ClipboardManager clipboardManager(Application application){

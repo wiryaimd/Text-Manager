@@ -1,36 +1,31 @@
 package com.wiryaimd.textmanager.ui.editing;
 
-import android.app.Application;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.wiryaimd.textmanager.R;
 import com.wiryaimd.textmanager.SessionManager;
 import com.wiryaimd.textmanager.customwidget.TmEditor;
-import com.wiryaimd.textmanager.models.DataModel;
 import com.wiryaimd.textmanager.ui.editing.dialog.FindDialog;
 import com.wiryaimd.textmanager.ui.editing.dialog.ReplaceDialog;
 import com.wiryaimd.textmanager.util.Constants;
-import com.wiryaimd.textmanager.util.Measure;
+import com.wiryaimd.textmanager.util.EdtHistory;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
-import dagger.android.DaggerActivity;
 import dagger.android.support.DaggerAppCompatActivity;
 
 public class EditingActivity extends DaggerAppCompatActivity {
@@ -39,6 +34,9 @@ public class EditingActivity extends DaggerAppCompatActivity {
 
     @Inject SessionManager sessionManager;
     @Inject ClipboardManager clipboardManager;
+    @Inject EdtHistory edtHistory;
+
+    private Toolbar toolbar;
 
     private TmEditor edtmain;
     private LinearLayout lmain, lcopy, lpaste, lselectall, lfind, lreplace, ltab, lduplicate;
@@ -49,6 +47,12 @@ public class EditingActivity extends DaggerAppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editing);
+
+        // TODO menetapkan posisi layout ketika keyboard muncul
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
+        toolbar = findViewById(R.id.editing_toolbar);
+        setSupportActionBar(toolbar);
 
         edtmain = findViewById(R.id.editing_edtmain);
         rlmain = findViewById(R.id.editing_rlmain);
@@ -61,6 +65,12 @@ public class EditingActivity extends DaggerAppCompatActivity {
         lreplace = findViewById(R.id.editing_lreplace);
         ltab = findViewById(R.id.editing_ltab);
         lduplicate = findViewById(R.id.editing_lduplicate);
+
+        // TODO save edtmain to sessionManager
+        sessionManager.initTmEditor(edtmain);
+
+        // TODO setup edtHistory after initTmEditor
+        edtHistory.initEdtHistory();
 
         // TODO copy all text
         lcopy.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +92,16 @@ public class EditingActivity extends DaggerAppCompatActivity {
             public void onClick(View v) {
                 if (clipboardManager.hasPrimaryClip()){
                     ClipData.Item item = clipboardManager.getPrimaryClip().getItemAt(0);
-                    edtmain.setText(item.getText().toString());
+                    if (edtmain.getText() == null){
+                        edtmain.setText(item.getText().toString());
+                        Toast.makeText(EditingActivity.this, "Pasted", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    StringBuilder sb = new StringBuilder(edtmain.getText().toString());
+                    int startCursor = edtmain.getSelectionStart();
+                    sb.insert(startCursor, item.getText().toString());
+                    edtmain.setText(sb.toString());
+                    edtmain.setSelection(startCursor + item.getText().length());
                     Toast.makeText(EditingActivity.this, "Pasted", Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(EditingActivity.this, "Failed To Paste Text", Toast.LENGTH_SHORT).show();
@@ -102,7 +121,7 @@ public class EditingActivity extends DaggerAppCompatActivity {
         lfind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sessionManager.initEditingActivity(edtmain, lmain, getResources().getDisplayMetrics());
+                sessionManager.initLayoutPosition(lmain, getResources().getDisplayMetrics());
                 new FindDialog().show(getSupportFragmentManager(), Constants.DIALOG_TAG_FIND);
             }
         });
@@ -111,7 +130,7 @@ public class EditingActivity extends DaggerAppCompatActivity {
         lreplace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sessionManager.initEditingActivity(edtmain, lmain, getResources().getDisplayMetrics());
+                sessionManager.initLayoutPosition(lmain, getResources().getDisplayMetrics());
                 new ReplaceDialog().show(getSupportFragmentManager(), Constants.DIALOG_TAG_REPLACE);
             }
         });
@@ -146,5 +165,30 @@ public class EditingActivity extends DaggerAppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_editing_maintool, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.editingmenu_save:
+                Log.d(TAG, "onOptionsItemSelected: menu save");
+                return true;
+            case R.id.editingmenu_undo:
+                if (edtHistory.getEdtMain() != null){
+                    edtHistory.undo();
+                }
+                return true;
+            case R.id.editingmenu_redo:
+                if (edtHistory.getEdtMain() != null){
+                    edtHistory.redo();
+                }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }

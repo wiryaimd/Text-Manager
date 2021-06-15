@@ -23,8 +23,11 @@ public class SessionManager {
 
     }
 
-    public void initEditingActivity(TmEditor tmEditor, LinearLayout lmain, DisplayMetrics metrics){
+    public void initTmEditor(TmEditor tmEditor){
         this.tmEditor = tmEditor;
+    }
+
+    public void initLayoutPosition(LinearLayout lmain, DisplayMetrics metrics){
         this.linearMainX = Measure.dpToPx(Measure.getPositionView(lmain).x, metrics);
         this.linearMainY = Measure.dpToPx(Measure.getPositionView(lmain).y, metrics);
     }
