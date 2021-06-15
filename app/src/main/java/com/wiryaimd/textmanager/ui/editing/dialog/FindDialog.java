@@ -1,45 +1,29 @@
 package com.wiryaimd.textmanager.ui.editing.dialog;
 
-import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.style.BackgroundColorSpan;
-import android.text.style.ForegroundColorSpan;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import com.google.android.material.snackbar.Snackbar;
 import com.wiryaimd.textmanager.R;
 import com.wiryaimd.textmanager.SessionManager;
-import com.wiryaimd.textmanager.customwidget.TmEditor;
-import com.wiryaimd.textmanager.models.DataModel;
 import com.wiryaimd.textmanager.util.DialogPosition;
-import com.wiryaimd.textmanager.util.Measure;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import dagger.android.support.DaggerDialogFragment;
 
@@ -123,6 +107,9 @@ public class FindDialog extends DaggerDialogFragment {
                         sessionManager.getTmEditor().setText(ssb);
                         sessionManager.getTmEditor().setSelection(posCursor);
                     }
+                }else{
+                    ssb.removeSpan(bcs);
+                    sessionManager.getTmEditor().setText(ssb);
                 }
             }
 

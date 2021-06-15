@@ -20,7 +20,13 @@
         <item name="android:actionOverflowButtonStyle">@style/ColorMenuIcon</item>
     </style>
 
+<!--    set titik tiga icon-->
     <style name="ColorMenuIcon" parent="android:style/Widget.Holo.ActionButton.Overflow">
         <item name="android:src">@drawable/ic_account</item>
+    </style>
+
+<!--    set font pada toolbar-->
+    <style name="toolBarStyle">
+        <item name="android:fontFamily">@font/leaguebold</item>
     </style>
 </resources>

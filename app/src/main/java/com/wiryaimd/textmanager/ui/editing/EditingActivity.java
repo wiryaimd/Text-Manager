@@ -19,6 +19,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.wiryaimd.textmanager.R;
 import com.wiryaimd.textmanager.SessionManager;
 import com.wiryaimd.textmanager.customwidget.TmEditor;
+import com.wiryaimd.textmanager.ui.editing.dialog.EditTitleDialog;
 import com.wiryaimd.textmanager.ui.editing.dialog.FindDialog;
 import com.wiryaimd.textmanager.ui.editing.dialog.ReplaceDialog;
 import com.wiryaimd.textmanager.util.Constants;
@@ -71,6 +72,14 @@ public class EditingActivity extends DaggerAppCompatActivity {
 
         // TODO setup edtHistory after initTmEditor
         edtHistory.initEdtHistory();
+
+        // TODO on navigation click, edit text title name
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new EditTitleDialog().show(getSupportFragmentManager(), Constants.DIALOG_TAG_EDITTITLE);
+            }
+        });
 
         // TODO copy all text
         lcopy.setOnClickListener(new View.OnClickListener() {

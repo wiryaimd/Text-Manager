@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/editing_rlmain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary1"
-    android:id="@+id/editing_rlmain">
+    android:background="@color/primary1">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/editing_appbarlayout"
@@ -16,6 +16,9 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:menu="@menu/menu_editing_maintool"
+            app:navigationIcon="@drawable/ic_edit"
+            app:subtitle="MENGENTOD"
+            app:subtitleTextColor="@color/color2"
             app:title="Text Manager"
             app:titleTextColor="@color/white">
 

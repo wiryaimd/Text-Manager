@@ -9,7 +9,6 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.style.BackgroundColorSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -139,6 +138,9 @@ public class ReplaceDialog extends DaggerDialogFragment {
                         sessionManager.getTmEditor().setText(ssb);
                         sessionManager.getTmEditor().setSelection(posCursor);
                     }
+                }else{
+                    ssb.removeSpan(bcs);
+                    sessionManager.getTmEditor().setText(ssb);
                 }
             }
 
