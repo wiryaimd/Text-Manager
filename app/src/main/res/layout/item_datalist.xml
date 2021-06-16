@@ -1,19 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="6dp"
+    app:cardCornerRadius="16dp">
 
     <RelativeLayout
+        android:background="@color/primary1"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
-            android:textSize="22sp"
-            android:layout_margin="12dp"
+            android:textColor="@color/white"
             android:id="@+id/datalist_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:fontFamily="@font/leaguebold"
+            android:text="title brohh okk"
+            android:textSize="20sp">
+
+        </TextView>
+
+        <TextView
+            android:textColor="@color/color6"
+            android:id="@+id/datalist_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/datalist_title"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:text="desc ni jrot lore koko gitnin amat ya gua ngetik kek eada penegntnott tan nyta oawkawok mp por impsmoskad laskdjlk">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/datalist_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/datalist_text"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="12dp"
+            android:text="12 Decembcrod"
+            android:textColor="@color/color6">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/datalist_text"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="12dp"
+            android:text="Main Category"
+            android:textColor="@color/color3">
 
         </TextView>
 

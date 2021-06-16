@@ -18,12 +18,12 @@ import dagger.Provides;
 public class EditingModule {
 
     @Provides
-    EdtHistory edtHistory(SessionManager sessionManager){
+    static EdtHistory edtHistory(SessionManager sessionManager){
         return new EdtHistory(sessionManager);
     }
 
     @Provides
-    ClipboardManager clipboardManager(Application application){
+    static ClipboardManager clipboardManager(Application application){
         return (ClipboardManager) application.getSystemService(Context.CLIPBOARD_SERVICE);
     }
 }

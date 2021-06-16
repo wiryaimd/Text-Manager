@@ -1,9 +1,11 @@
 package com.wiryaimd.textmanager.di.main;
 
-import com.wiryaimd.textmanager.models.DataModel;
-import com.wiryaimd.textmanager.ui.main.DataAdapter;
+import android.app.Application;
 
-import javax.inject.Named;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.wiryaimd.textmanager.ui.main.adapter.CategoryAdapter;
+import com.wiryaimd.textmanager.ui.main.adapter.DataAdapter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -14,5 +16,15 @@ public class MainModule {
     @Provides
     static DataAdapter dataAdapter(){
         return new DataAdapter();
+    }
+
+    @Provides
+    static CategoryAdapter categoryAdapter(){
+        return new CategoryAdapter();
+    }
+
+    @Provides
+    static LinearLayoutManager linearLayoutManager(Application application){
+        return new LinearLayoutManager(application);
     }
 }

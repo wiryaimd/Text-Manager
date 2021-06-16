@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/color7"
     android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -24,32 +25,67 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/main_recyclerview_category"
+        android:layout_margin="6dp"
+        android:background="@color/color7"
+        android:layout_below="@id/main_appbarlayout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/main_appbarlayout">
+        android:layout_height="match_parent"
+        android:layout_below="@id/main_recyclerview_category">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:background="@color/color7"
+            android:id="@+id/main_recyclerview_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
         </androidx.recyclerview.widget.RecyclerView>
 
     </androidx.core.widget.NestedScrollView>
 
-    <Button
-        android:id="@+id/main_btncreate"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/main_lcreate"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="65dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="12dp"
-        android:backgroundTint="@color/primary2"
-        android:text="Create New Editor"
-        android:textColor="@color/white"
-        android:textSize="18sp">
+        android:background="@drawable/custom_bg1">
 
-    </Button>
+        <TextView
+            android:layout_weight="1"
+            android:layout_marginStart="24dp"
+            android:fontFamily="@font/leaguebold"
+            android:textColor="@color/color6"
+            android:textSize="24sp"
+            android:layout_gravity="center_vertical"
+            android:text="Create New Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </TextView>
+
+        <ImageView
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_add"
+            android:layout_width="50dp"
+            android:layout_height="50dp">
+
+        </ImageView>
+
+    </LinearLayout>
 
 </RelativeLayout>

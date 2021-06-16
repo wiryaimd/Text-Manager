@@ -3,11 +3,14 @@
     <color name="primary1">#1b262c</color>
     <color name="primary2">#0f4c75</color>
     <color name="primary3">#293b5f</color>
+    <color name="primary4">#0A81AB</color>
     <color name="color1">#47597e</color>
     <color name="color2">#ffc107</color>
     <color name="color3">#7952b3</color>
     <color name="color4">#343F56</color>
     <color name="color5">#4AA96C</color>
+    <color name="color6">#E1E8EB</color>
+    <color name="color7">#343A40</color>
 
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>

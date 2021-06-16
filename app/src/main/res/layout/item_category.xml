@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/category_relative"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="120dp"
+            android:padding="12dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/custom_bg3">
+
+            <TextView
+                android:background="@drawable/custom_bg2"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/leaguebold"
+                android:gravity="center"
+                android:text="M"
+                android:textColor="@color/white"
+                android:layout_marginBottom="8dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp">
+
+            </TextView>
+
+            <TextView
+                android:text="Category"
+                android:textSize="14sp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:fontFamily="@font/leaguebold"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+            <TextView
+                android:text="Main"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:fontFamily="@font/leaguebold"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+            <TextView
+                android:text="0 Item"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
