@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/color7"
+    android:background="@color/primary1"
     android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -25,27 +25,16 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/main_recyclerview_category"
-        android:layout_margin="6dp"
-        android:background="@color/color7"
-        android:layout_below="@id/main_appbarlayout"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </androidx.recyclerview.widget.RecyclerView>
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/main_recyclerview_category">
+        android:layout_below="@id/main_appbarlayout">
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_marginStart="6dp"
             android:layout_marginEnd="6dp"
             android:background="@color/color7"
-            android:id="@+id/main_recyclerview_list"
+            android:id="@+id/main_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 

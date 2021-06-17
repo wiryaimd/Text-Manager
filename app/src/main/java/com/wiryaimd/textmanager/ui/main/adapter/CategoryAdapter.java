@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wiryaimd.textmanager.R;
-import com.wiryaimd.textmanager.models.CategoryModel;
+import com.wiryaimd.textmanager.db.models.CategoryModel;
 
 import java.util.ArrayList;
 import java.util.List;

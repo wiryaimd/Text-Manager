@@ -17,7 +17,7 @@ import dagger.android.AndroidInjectionModule;
 import dagger.android.AndroidInjector;
 
 @Singleton
-@Component(modules = {AndroidInjectionModule.class, ActivityBuilderModule.class})
+@Component(modules = {AndroidInjectionModule.class, ActivityBuilderModule.class, AppModule.class})
 public interface AppComponent extends AndroidInjector<BaseApplication> {
 
     SessionManager sessionManager();
